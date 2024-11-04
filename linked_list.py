@@ -132,7 +132,13 @@ class LinkedList:
 
   # TODO: Implement the contains_value method here
   def contains_value(self, target):
-    pass
+    current_node = self._head
+
+    while current_node is not None:
+      if current_node._value == target:
+        return True
+      current_node = current_node._next
+    return False
 
   # TODO: Implement the insert_value method here
   def insert_value(self, position, value):
@@ -188,10 +194,10 @@ print(len(linked_list))                                 # 2
 # Phase 2 Manual Testing
 
 # # 1. Test whether the list contains_value a value
-# linked_list = LinkedList()
-# linked_list.add_to_head('new head node')
-# print(linked_list.contains_value('new head node'))      # True
-# print(linked_list.contains_value('App Academy node'))   # False
+linked_list = LinkedList()
+linked_list.add_to_head('new head node')
+print(linked_list.contains_value('new head node'))      # True
+print(linked_list.contains_value('App Academy node'))   # False
 
 # # 2. Test inserting a node value into the list at a specific position
 # linked_list.insert_value(0, 'hello!')
