@@ -31,26 +31,59 @@ Phase 2:
 class Node:
   # TODO: Set the `_value` `_next` node instance variables
   def __init__(self, value):
-    pass
+    self._value = value
+    self._next = None
 
 
 # TODO: Implement a Singly Linked List class here
 class LinkedList:
   # TODO: Set the `_head` node, `_tail` node, and list `_length` instance variables
   def __init__(self):
-    pass
+    self._head = None
+    self._tail = None
+    self._length = 0
 
   # TODO: Implement the get_node method here
   def get_node(self, position):
-    pass
+    if position < 0 or position >= self._length:
+      return
+
+    current_node = self._head
+    current_position = 0
+
+    while current_position < position:
+      current_node = current_node._next
+
+      current_position += 1
+
+    return current_node
 
   # TODO: Implement the add_to_tail method here
   def add_to_tail(self, value):
-    pass
+    new_node = Node(value)
+
+    if self._length == 0:
+      self._head = new_node
+      self._tail = new_node
+
+    else:
+      self._tail._next = new_node
+      self._tail = new_node
+
+    self._length += 1
 
   # TODO: Implement the add_to_head method here
   def add_to_head(self, value):
-    pass
+    new_node = Node(value)
+
+    #If the list is empty
+    if self._length == 0:
+      self._head = new_node
+      self._tail = new_node
+    else:
+      new_node._next = self._head
+      self._head = new_node
+    self._length += 1
 
   # TODO: Implement the remove_head method here
   def remove_head(self):
@@ -83,8 +116,8 @@ class LinkedList:
     pass
 
   # TODO: Implement the __str__ method here
-  def __str__(self):
-    pass
+  # def __str__(self):
+  #   pass
 
 # Phase 1 Manual Testing:
 
@@ -96,17 +129,17 @@ linked_list = LinkedList()
 print(linked_list)                              # <__main__.LinkedList object at ...>
 
 # # 2. Test getting a node by its position
-# print(linked_list.get_node(0))                # None
+print(linked_list.get_node(0))                # None
 
 # # 3. Test adding a node to the list's tail
-# linked_list.add_to_tail('new tail node')
-# print(linked_list.get_node(0))                # <__main__.Node object at ...>
-# print(linked_list.get_node(0)._value)         # `new tail node`
+linked_list.add_to_tail('new tail node')
+print(linked_list.get_node(0))                # <__main__.Node object at ...>
+print(linked_list.get_node(0)._value)         # `new tail node`
 
 # # 4. Test adding a node to list's head
-# linked_list.add_to_head('new head node')
-# print(linked_list.get_node(0))                # <__main__.Node object at ...>
-# print(linked_list.get_node(0)._value)         # `new head node`
+linked_list.add_to_head('new head node')
+print(linked_list.get_node(0))                # <__main__.Node object at ...>
+print(linked_list.get_node(0)._value)         # `new head node`
 
 # # 5. Test removing the head node
 # linked_list.remove_head()
