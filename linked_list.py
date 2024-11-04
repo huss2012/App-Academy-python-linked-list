@@ -87,15 +87,46 @@ class LinkedList:
 
   # TODO: Implement the remove_head method here
   def remove_head(self):
-    pass
+    if self._length == 0:
+      return None
+
+    removed_value = self._head._value
+
+    self._head = self._head._next
+
+    if self._head is None:
+      self._tail = None
+
+    self._length -= 1
+
+    return removed_value
 
   # TODO: Implement the remove_tail method here
   def remove_tail(self):
-    pass
+    if self._length == 0:
+      return None
+
+    REMOVE_VALUE = self._tail._value
+
+    if self._length == 1:
+      self._head = None
+      self._tail = None
+    else:
+      current_node = self._head
+
+      while current_node._next is not self._tail:
+        current_node = current_node._next
+
+      self._tail = current_node
+      self._tail.new = None
+
+      self._length -= 1
+
+      return removed_value
 
   # TODO: Implement the __len__ method here
   def __len__(self):
-    pass
+    return self._length
 
 # Phase 2
 
@@ -142,17 +173,17 @@ print(linked_list.get_node(0))                # <__main__.Node object at ...>
 print(linked_list.get_node(0)._value)         # `new head node`
 
 # # 5. Test removing the head node
-# linked_list.remove_head()
-# print(linked_list.get_node(0)._value)         # `new tail node` because `new head node` has been removed
-# print(linked_list.get_node(1))                # `None` because `new head node` has been removed
+linked_list.remove_head()
+print(linked_list.get_node(0)._value)         # `new tail node` because `new head node` has been removed
+print(linked_list.get_node(1))                # `None` because `new head node` has been removed
 
 # # 6. Test removing the tail node
-# print(linked_list.get_node(0)._value)         # `new tail node`
-# linked_list.remove_tail()
-# print(linked_list.get_node(0))                # None
+print(linked_list.get_node(0)._value)         # `new tail node`
+linked_list.remove_tail()
+print(linked_list.get_node(0))                # None
 
 # # 7. Test returning the list length
-# print(len(linked_list))                                 # 2
+print(len(linked_list))                                 # 2
 
 # Phase 2 Manual Testing
 
